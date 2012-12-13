@@ -1,0 +1,95 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI Resizable - Default functionality</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+	    #resizable { 
+			height: 150px; 
+			padding: 0.5em; 
+			margin-bottom: 1em;
+			
+		}
+    </style>
+    <script>
+    $(function() {
+		$(".resizable").each( function(){
+			$(this).css('height',$(this).data('height')).children('.element').css('height',$(this).data('height')-35);
+		} );
+        $( ".resizable" ).resizable({
+		    start:function () {
+		      
+		    },
+		    stop:function () {
+		     
+		    },
+		    resize:function () {
+			  $(this).children('.element').css('height',parseInt($(this).css('height').substring(0,$(this).css('height').length-2))-35);
+			  
+		    }
+		  });
+    });
+    </script>
+</head>
+<body>
+	<h1>Timeline</h1>
+ 
+	<div class="resizable ui-widget-content cat1" data-height="90">
+		<div class="element" style="width: 220px;">
+			<div class="startdate">12 Nov 2011</div>
+			<div class="enddate">1 January 2012</div>
+			<h2>Job 1</h2>
+		</div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 280px;">
+			<div class="startdate">12 Nov 2011</div>
+			<div class="enddate">1 January 2012</div>
+			<h2>Job 2</h2>
+		</div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 100px;"></div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 389px;"></div>
+		<div class="arrow"></div>
+	</div>
+
+	<div class="resizable ui-widget-content cat2" data-height="160">
+		<div class="element" style="width: 143px;">
+			<div class="startdate">12 Nov 2011</div>
+			<div class="enddate">1 January 2012</div>
+			<h2>Girl Number 1</h2>
+		</div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 643px;">
+			<div class="startdate">12 Nov 2011</div>
+			<div class="enddate">1 January 2012</div>
+			<h2>Girl Number 2</h2>
+		</div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 180px;"></div>
+		<div class="arrow"></div>
+		<div class="element" style="width: 239px;"></div>
+		<div class="arrow"></div>
+	</div>
+
+	<div class="resizable ui-widget-content cat3" data-height="120">
+		<div class="element" style="width: 243px;">
+			<div class="startdate">12 Nov 2011</div>
+			<div class="enddate">1 January 2012</div>
+			<h2>Location 1</h2>
+		</div>
+		<div class="element" style="width: 443px;"></div>
+		<div class="element" style="width: 480px;"></div>
+	</div>
+
+	<footer class="post-info">
+
+	</footer>
+		
+</body>
+</html>

@@ -1,0 +1,49 @@
+*{
+	font-family: arial, san-serif;
+}
+
+.startdate, .enddate{
+	font-size: 0.7em;
+	width: 50%;
+}
+
+.element{ 
+	padding: 0.3em;
+	border-radius: .5em;
+
+}
+
+.arrow{
+	width: 0;
+	height: 0;
+	border-top: transparent 12px solid;
+	border-bottom: transparent 12px solid;
+	border-left: #BFF 10px solid;
+	float: left;
+	margin: 13px 10px 0 0;
+}
+
+.element h2{
+	font-size: 1em;
+}
+
+.startdate{
+	float: left; 
+	text-align: left;
+}
+
+.enddate{
+	float: right;
+	text-align: right;
+}
+
+.cat1, .cat2, .cat3{ width: 9999px; border: 0; }
+
+.cat1 .element{background-color: #BFF;}
+.cat2 .element{background-color: #DFF;}
+.cat3 .element{background-color: #AFF;} 
+
+.element{ float: left; margin: 10px 10px 0 0; }
+
+.ui-resizable-s{ border-top: 1px solid #AAA; }
+
