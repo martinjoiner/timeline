@@ -2,6 +2,13 @@
 	font-family: arial, san-serif;
 }
 
+
+#resizable { 
+	padding: 0.5em; 
+	margin-bottom: 1em;
+	width: auto;
+}
+
 .startdate, .enddate{
 	font-size: 0.7em;
 	width: 50%;
@@ -10,7 +17,11 @@
 .element{ 
 	padding: 0.3em;
 	border-radius: .5em;
-
+	position: relative; 
+	margin: 10px 10px 0 0;
+	top: 0;
+	left: 0;
+	float: left;
 }
 
 .arrow{
@@ -18,9 +29,11 @@
 	height: 0;
 	border-top: transparent 12px solid;
 	border-bottom: transparent 12px solid;
-	border-left: #BFF 10px solid;
-	float: left;
-	margin: 13px 10px 0 0;
+	border-left: rgba(160,160,160,0.5) 10px solid;
+	position: relative;
+	top: 0;
+	right: 0;
+	float: right;
 }
 
 .element h2{
@@ -28,7 +41,7 @@
 }
 
 .startdate{
-	float: left; 
+	float: left;
 	text-align: left;
 }
 
@@ -37,13 +50,11 @@
 	text-align: right;
 }
 
-.cat1, .cat2, .cat3{ width: 9999px; border: 0; }
+.cat1, .cat2, .cat3{ border: 0; }
 
 .cat1 .element{background-color: #BFF;}
 .cat2 .element{background-color: #DFF;}
 .cat3 .element{background-color: #AFF;} 
-
-.element{ float: left; margin: 10px 10px 0 0; }
 
 .ui-resizable-s{ border-top: 1px solid #AAA; }
 
