@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/main.css" />
     <script>
     $(function() {
+
+        $(".element").mouseover( function(){$(this).children('.date').show() }).mouseout(function(){$(this).children('.date').hide() });
+        
     	rescale(10);
 		$(".resizable").each( function(){
 			$(this).css('height',$(this).data('height')).children('.element').css('height',$(this).data('height')-35);
@@ -47,36 +50,36 @@
 	<input type="number" id="scale" name="scale" value="10">
  
 	<div class="resizable ui-widget-content cat1" data-height="90">
-		<div class="element" data-start="10" data-duration="200">
-			<div class="startdate">12 Nov 2011</div>
-			<div class="enddate">1 January 2012</div>
+		<div class="element" data-start="0" data-duration="200">
+			<div class="start date">12 Nov 2011</div>
+			<div class="end date">1 January 2012</div>
 			<h2>Job 1</h2>
 			<div class="arrow"></div>
 		</div>
-		<div class="element" data-start="240" data-duration="200">
-			<div class="startdate">12 Nov 2011</div>
-			<div class="enddate">1 January 2012</div>
+		<div class="element" data-start="210" data-duration="100">
+			<div class="start date">12 Nov 2011</div>
+			<div class="end date">1 January 2012</div>
 			<h2>Job 2</h2>
 			<div class="arrow"></div>
 		</div>
-		<div class="element" data-start="600" data-duration="200">
+		<div class="element" data-start="302" data-duration="200">
 			<div class="arrow"></div>
 		</div>
-		<div class="element" data-start="840" data-duration="200">
+		<div class="element" data-start="600" data-duration="200">
 			<div class="arrow"></div>
 		</div>
 	</div>
 
 	<div class="resizable ui-widget-content cat2" data-height="160">
 		<div class="element" data-start="10" data-duration="143">
-			<div class="startdate">12 Nov 2011</div>
-			<div class="enddate">1 January 2012</div>
+			<div class="start date">12 Nov 2011</div>
+			<div class="end date">1 January 2012</div>
 			<h2>Girl Number 1</h2>
 			<div class="arrow"></div>
 		</div>
 		<div class="element" data-start="160" data-duration="643">
-			<div class="startdate">12 Nov 2011</div>
-			<div class="enddate">1 January 2012</div>
+			<div class="start date">12 Nov 2011</div>
+			<div class="end date">1 January 2012</div>
 			<h2>Girl Number 2</h2>
 			<div class="arrow"></div>
 		</div>
@@ -87,8 +90,8 @@
 
 	<div class="resizable ui-widget-content cat3" data-height="120">
 		<div class="element" data-start="30" data-duration="150">
-			<div class="startdate">12 Nov 2011</div>
-			<div class="enddate">1 January 2012</div>
+			<div class="start date">12 Nov 2011</div>
+			<div class="end date">1 January 2012</div>
 			<h2>Location 1</h2>
 		</div>
 		<div class="element" data-start="900" data-duration="200"></div>
