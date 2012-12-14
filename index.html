@@ -8,41 +8,7 @@
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="css/main.css" />
-    <script>
-    $(function() {
-
-        $(".element").mouseover( function(){$(this).children('.date').show() }).mouseout(function(){$(this).children('.date').hide() });
-        
-    	rescale(10);
-		$(".resizable").each( function(){
-			$(this).css('height',$(this).data('height')).children('.element').css('height',$(this).data('height')-35);
-		} );
-        $( ".resizable" ).resizable({
-		    start:function () {
-		      
-		    },
-		    stop:function () {
-		     
-		    },
-		    resize:function () {
-			  $(this).children('.element').css('height',parseInt($(this).css('height').substring(0,$(this).css('height').length-2))-35);
-			  
-		    }
-		  });
-
-    	$('#scale').change( function(){ rescale($(this).attr('value')) } );
-    });
-
-    function rescale(scale){
-    	scale=scale/10;
-    	console.log(scale);
-
-    	$(".element").each( function() {
-    		$(this).css('width',$(this).data('duration')*scale);
-    		$(this).css({left:$(this).data('start')*scale+'px'});
-    	});
-    }
-    </script>
+    <script src="js/timeline.js"></script>
 </head>
 <body>
 	<h1>Timeline</h1>
@@ -89,13 +55,37 @@
 	</div>
 
 	<div class="resizable ui-widget-content cat3" data-height="120">
-		<div class="element" data-start="30" data-duration="150">
-			<div class="start date">12 Nov 2011</div>
-			<div class="end date">1 January 2012</div>
-			<h2>Location 1</h2>
+		<div class="element" data-start="0" data-duration="14">
+			<div class="start date">May 1983</div>
+			<div class="end date">July 1983</div>
+			<h2>Born in Salisbury</h2>
+		</div>
+		<div class="element" data-start="14" data-duration="1008">
+			<div class="start date">July 1983</div>
+			<div class="end date">September 2001</div>
+			<h2>Parents house, Taunton</h2>
+		</div>
+		<div class="element" data-start="1355492098" date-end="1355492174">
+			<div class="start date">September 2001</div>
+			<div class="end date">June 2002</div>
+			<h2>Student house, Plymouth</h2>
+		</div>
+		<div class="element" data-start="1062" data-duration="40">
+			<div class="start date">September 2002</div>
+			<div class="end date">June 2003</div>
+			<h2>2nd student house, Plymouth</h2>
+		</div>
+		<div class="element" data-start="1084" data-duration="3">
+			<div class="start date">June 2002</div>
+			<div class="end date">July 2003</div>
+			<h2>Shared house, London</h2>
 		</div>
 		<div class="element" data-start="900" data-duration="200"></div>
 		<div class="element" data-start="1200" data-duration="200"></div>
+	</div>
+
+	<div>
+		<input type="date">
 	</div>
 
 	<footer class="post-info">
