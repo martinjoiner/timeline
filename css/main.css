@@ -2,20 +2,13 @@
 	font-family: arial, san-serif;
 }
 
-
-#resizable { 
-	padding: 0.5em; 
-	margin-bottom: 1em;
-	width: auto;
-}
-
 .date{
 	font-size: 0.7em;
 	position: absolute;
 	background-color: #FFF;
-	top: -1.6em;
+	top: 60%;
 	display: none;
-	z-index: 100;
+	z-index: 1001;
 }
 
 .start.date{
@@ -24,16 +17,15 @@
 }
 
 .end.date{
-	right: 0;
+	right: 10px;
 	text-align: right;
 }
-
 
 .element{ 
 	padding: 0.3em;
 	border-radius: .5em;
 	position: absolute; 
-	margin: 10px 10px 0 0;
+	margin: 10px 0 0 0;
 	top: 0;
 	left: 0;
 	box-sizing: border-box;
@@ -54,13 +46,30 @@
 .element h3{
 	font-size: 12px;
 }
-.resizable h2{ height: 100%; float: left; position: absolute; left: -1em; }
-.resizable .element{background-color: #BFF;}
-.cat1, .cat2, .cat3{ border: 0; }
-
-.cat1 .element{background-color: #BFF;}
-.cat2 .element{background-color: #DFF;}
-.cat3 .element{background-color: #AFF;} 
+.resizable h2{ 
+	font-size: 18px;
+	position: absolute;
+	float: left; 
+	background-color: rgba(255,255,255,0.5);
+	padding: .2em;
+	margin: 0;
+	z-index: 10;
+}
+.resizable { 
+	width: auto;
+	overflow: hidden;
+	border: 0;
+	background: transparent;
+}
+.resizable .element{background-color: #BFF; }
 
 .ui-resizable-s{ border-top: 1px solid #AAA; }
 
+.newyear{ 
+	top: 60px;
+	left: 100px;
+	position: absolute; 
+	border-left: 1px solid #CCC;
+	color: #CCC;
+	height: 600px;
+}
