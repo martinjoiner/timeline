@@ -14,18 +14,44 @@
 	<h1>Timeline</h1>
 
 	<input type="number" id="scale" name="scale" value="10">
+
+	<?php 
+
+	include("db_connect.inc.php"); 
+	$q = mysql_query("	SELECT `category`.name AS category_name, event.`name`, event.`start`, event.`end`
+						FROM event
+						LEFT JOIN `category` ON event.category_id = category.id
+						ORDER BY `category`.`id`
+					");
+
+	$currentcat = "";
+	$counter = 0;
+	while($r = mysql_fetch_array($q)){
+		if($currentcat != $r["category_name"]){
+			if($currentcat != ""){
+				print '</div>';
+			}
+			$currentcat = $r["category_name"];
+			print '<div class="resizable ui-widget-content cat'.$counter++.'" data-height="90">';
+			print '<h2>'.$r["category_name"].'</h2>';
+		}
+		print '<div class="element" data-start="'.$r["start"].'" data-end="'.$r["end"].'"><h3>'.$r["name"].'</h3>
+			<div class="arrow"></div></div>';
+	}
+	print '</div>';
+	?>
  
-	<div class="resizable ui-widget-content cat1" data-height="90">
+	<div class="resizable ui-widget-content cat<?php print $counter++; ?>" data-height="90">
 		<div class="element" data-start="0" data-duration="200">
 			<div class="start date">12 Nov 2011</div>
 			<div class="end date">1 January 2012</div>
-			<h2>Job 1</h2>
+			<h3>Job 1</h3>
 			<div class="arrow"></div>
 		</div>
 		<div class="element" data-start="210" data-duration="100">
 			<div class="start date">12 Nov 2011</div>
 			<div class="end date">1 January 2012</div>
-			<h2>Job 2</h2>
+			<h3>Job 2</h3>
 			<div class="arrow"></div>
 		</div>
 		<div class="element" data-start="302" data-duration="200">
@@ -40,13 +66,13 @@
 		<div class="element" data-start="10" data-duration="143">
 			<div class="start date">12 Nov 2011</div>
 			<div class="end date">1 January 2012</div>
-			<h2>Girl Number 1</h2>
+			<h3>Girl Number 1</h3>
 			<div class="arrow"></div>
 		</div>
 		<div class="element" data-start="160" data-duration="643">
 			<div class="start date">12 Nov 2011</div>
 			<div class="end date">1 January 2012</div>
-			<h2>Girl Number 2</h2>
+			<h3>Girl Number 2</h3>
 			<div class="arrow"></div>
 		</div>
 		<div class="element" data-start="900" data-duration="180"></div>

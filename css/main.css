@@ -51,9 +51,11 @@
 	float: right;
 }
 
-.element h2{
+.element h3{
 	font-size: 12px;
 }
+.resizable h2{ height: 100%; float: left; position: absolute; left: -1em; }
+.resizable .element{background-color: #BFF;}
 .cat1, .cat2, .cat3{ border: 0; }
 
 .cat1 .element{background-color: #BFF;}
