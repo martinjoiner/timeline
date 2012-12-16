@@ -1,61 +1,58 @@
-<!doctype html>
+<?php
+session_start();
+include("login_funcs.inc.php");
+// If the user has not logged in
+if(isLoggedIn()){
+    header('Location: mine.php');
+    die();
+}
+?><!doctype html>
  
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Timeline</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <link rel="stylesheet" href="css/main.css" />
-    <script src="js/timeline.js"></script>
+
+    <?php include("head_includes.inc.php"); ?>
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js"></script>
 </head>
 <body>
-	<h1>Timeline</h1>
+	<div class="header">
 
-	<label for="scale">Scale</label><input type="number" id="scale" name="scale" value="26">
-	<label for="offset">Offset</label><input type="number" id="offset" name="offset" value="82">
+		<div class="vertline fore"></div>
+		<div class="vertline fore"></div>
+		<div class="vertline mid"></div>
+		<div class="vertline mid"></div>
+		<div class="vertline mid"></div>
+		<div class="vertline back"></div>
+		<div class="vertline back"></div>
+		<div class="vertline back"></div>
+		<div class="vertline back"></div>
 
-	<div class="newyear" data-start="631152000">1990</div>
-	<div class="newyear" data-start="946684800">2000</div>
-	<div class="newyear" data-start="1104537600">2005</div>
+		<div class="contwrap">
+			<h1>Timeline</h1>
 
-	<div class="newyear" data-start="1230768000">2009</div>
-	<div class="newyear" data-start="1262304000">2010</div>
-	<div class="newyear" data-start="1293840000">2011</div>
-	<div class="newyear" data-start="1325376000">2012</div>
+			<h2>Login</h2>
 
-	<?php 
+			<form name="register" action="login.php" method="post">
+			    <label for="username">Username</label> <input type="text" id="username" name="username" maxlength="30" /><br>
+			    <label for="password">Password</label> <input type="password" name="password" /><br>
+			    <input type="submit" value="Login" /><br>
+			</form>
+		</div>
 
-	include("db_connect.inc.php"); 
-	$q = mysql_query("	SELECT `category`.name AS category_name, event.`name`, event.`start`, event.`end`, event.colour
-						FROM event
-						LEFT JOIN `category` ON event.category_id = category.id
-						ORDER BY `category`.`id`
-					");
+	</div>
 
-	$currentcat = "";
-	$counter = 0;
-	while($r = mysql_fetch_array($q)){
-		if($currentcat != $r["category_name"]){
-			if($currentcat != ""){
-				print '</div>';
-			}
-			$currentcat = $r["category_name"];
-			print '<div class="resizable ui-widget-content cat'.$counter++.'" data-height="90">';
-			print '<h2>'.$r["category_name"].'</h2>';
-		}
-		print '<div class="element" data-start="'.$r["start"].'" data-end="'.$r["end"].'" style="background-color: #'.$r["colour"].';">
-				<div class="start date">'.date("M-d-Y",$r["start"]).'</div>
-				<div class="end date">'.date("M-d-Y",$r["end"]).'</div>
-				<h3>'.$r["name"].'</h3>
-			</div>';
-	}
-	print '</div>';
-	?>
+	<div class="regwrap">
+		<h2>Register</h2>
 
-	<div>
-		<input type="date">
+		<form name="register" action="register.php" method="post">
+		    <input type="text" name="username" maxlength="30" /><label for="username">Username</label>
+		    <input type="password" name="pass1" /><label for="pass1">Password</label>
+		    <input type="password" name="pass2" /><label for="pass2">Password Again</label>
+		    <input type="submit" value="Register" /><br>
+		</form>
 	</div>
 		
 </body>

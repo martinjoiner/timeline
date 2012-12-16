@@ -1,0 +1,88 @@
+.header{ 
+	width: 100%;
+
+	position: relative;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+	background: #020031; /* Old browsers */
+	background: -moz-linear-gradient(45deg,  #1b005f 0%, #005b95 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#1b005f), color-stop(100%,#005b95)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* IE10+ */
+	background: linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b005f', endColorstr='#005b95',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	 -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	      box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+
+	overflow: hidden;
+}
+
+.header, .vertline{
+	height: 550px;
+}
+
+.contwrap{
+	z-index: 10;
+	position: relative;
+	background-color: rgba(0,0,0,0.1);
+  	margin: 80px 0;
+  	padding: 40px 0;
+}
+
+input{ margin: 0 0 1em 0; }
+label{ font-size: .9em; }
+
+.header h1 {
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0;
+}
+.header p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+.vertline{
+	position: absolute;
+	top: 0;
+	left: 30px;
+	z-index: 0;
+}
+
+.vertline.back{
+	border-left: 1px solid rgba(100,100,200,0.3);
+}
+.vertline.mid{
+	border-left: 2px solid rgba(130,130,230,0.2);
+}
+.vertline.fore{
+	border-left: 3px solid rgba(130,130,230,0.1);
+}
+
+.regwrap{
+	margin: 0 0 0 60%;
+	width: 300px;
+	color: #AAA;
+}
+.regwrap label{
+	float: right;
+	padding-right: 1em;
+}
+.regwrap input{
+	float: right;
+	clear: right;
+}
+
+.regwrap h2{
+	font-size: 1.2em;
+	border-bottom: 1px solid #AAA;
+	font-weight: normal;
+}

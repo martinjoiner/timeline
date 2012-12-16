@@ -1,0 +1,143 @@
+.header{ 
+	width: 100%;
+	float: left;
+	color: #fff;
+	text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+	background: #020031; /* Old browsers */
+	background: -moz-linear-gradient(45deg,  #1b005f 0%, #005b95 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#1b005f), color-stop(100%,#005b95)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* IE10+ */
+	background: linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b005f', endColorstr='#005b95',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	 -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	      box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	margin-bottom: 40px;
+}
+
+
+.header a{ color: #FFF;}
+
+.header h1{
+	margin: 8px;
+	font-size: 1.5em;
+	float: left;
+	width: 40%;
+}
+
+.loggedin{
+	margin: 8px;
+	text-align: right;
+	font-size: 0.9em;
+}
+
+.date{
+	font-size: 0.7em;
+	position: absolute;
+	background-color: #FFF;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: .3em;
+	padding: .3em;
+	top: 50%;
+	display: none;
+	z-index: 1001;
+}
+
+.start.date{
+	float: left;
+	text-align: left;
+}
+
+.end.date{
+	right: 10px;
+	text-align: right;
+}
+
+.element{ 
+	padding: 0.3em;
+	border-radius: .5em;
+	position: absolute; 
+	margin: 10px 0 0 0;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.arrow{
+	width: 0;
+	height: 0;
+	border-top: transparent 12px solid;
+	border-bottom: transparent 12px solid;
+	border-left: rgba(160,160,160,0.5) 10px solid;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	float: right;
+}
+
+.element h3{
+	margin: 0;
+	font-size: 12px;
+}
+.resizable h2{ 
+	color: #DDD;
+	font-size: 18px;
+	position: absolute;
+	float: left; 
+	background-color: rgba(0,0,0,0.8);
+	border: 1px solid #AAA;
+	border-top: 0;
+	border-left: 0;
+	padding: 0 .5em .1em .5em;
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+	z-index: 10;
+	border-bottom-right-radius: .5em;
+}
+.resizable { 
+	width: auto;
+	overflow: hidden;
+	border: 0;
+	background: transparent;
+}
+.resizable .element{background-color: #BFF; }
+
+.ui-resizable-s{ border-top: 1px solid #AAA; }
+
+.newyear{ 
+	top: 60px;
+	left: 100px;
+	font-size: .9em;
+	padding-left: .5em;
+	position: absolute; 
+	border-left: 1px solid #222;
+	color: #666;
+	height: 600px;
+}
+
+.eventinput{
+	background-color: #111;
+	padding: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px;
+	position: relative;
+	z-index: 10;
+}
+
+.eventinput h2{
+	padding-left: 70px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.eventinput label{
+	width: 60px;
+	text-align: right;
+	padding-right: 10px;
+	float: left;
+}
