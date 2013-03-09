@@ -13,7 +13,10 @@ function duration(start,end,unit){
 		}
 }
 
-$(function() {
+$(document).ready( function(){
+
+	$('.eventinput i').click( 	function(){ $('.eventinputwrap').addClass('EIWcollapsed') 	 } );
+	$('.addwrap i').click( 		function(){ $('.eventinputwrap').removeClass('EIWcollapsed') } );
 
     $(".element").mouseover( function(){$(this).children('.date').show() }).mouseout(function(){$(this).children('.date').hide() });
     $(".element").each( function(){ 

@@ -70,13 +70,21 @@ if(!isLoggedIn()){
 	print '</div>';
 	?>
 
+<div class="addwrap">
+	<i>+</i>
+</div>
+
+<div class="eventinputwrap">
 	<div class="eventinput">
+		<i>X</i>
 		<h2>Add event</h2>
 		<label>Name</label> <input type="name"><br>
+		<label for="username">Colour</label><input type="color" name="colour" maxlength="30" /><br>
 		<label>Start</label> <input type="date" name="startdate"><br>
 		<label>End</label> <input type="date" name="enddate"><br>
 		<input type="button" value="Add">
 	</div>
-		
+</div>
+	
 </body>
 </html>

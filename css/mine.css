@@ -119,24 +119,98 @@
 	height: 600px;
 }
 
+/* -------------- EVENT INPUT --------------- */
+/* ------------------------------------------ */
+
+.addwrap{
+	width: 100%;
+	z-index: 1050;
+	padding-top: 200px;
+}
+
+.addwrap i, .eventinput i{
+	display: block;
+	-webkit-transition: color .5s, border-color .5s;
+	font-weight: bold;
+	line-height: 28px;
+	font-style: normal;
+	height: 26px;
+	width: 26px;
+	cursor: pointer;
+	text-align: center;
+	color: #FFF;
+	background-color: rgba(0,0,0,0.9);
+	font-size: 16px;
+	border-radius: 13px;
+	border: 1px solid rgba(0,0,0,0.9);
+}
+
+.addwrap i{
+	margin: 0 auto;
+}
+
+.addwrap i:hover{
+	color: #1D1;
+	border-color: rgba(0,255,0,0.7);
+}
+
+.eventinputwrap{
+	width: 0px;
+	height: 100%;
+	position: absolute;
+	padding: 0 50%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1050;
+	-webkit-transition: height .8s;
+}
+
+.EIWcollapsed{
+	height: 0%;
+}
+
 .eventinput{
-	background-color: #111;
-	padding: 1em;
+	top: 170px;
+	left: -215px;
+	background-color: rgba(0,0,0,0.9);
+	padding: 15px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 400px;
+	height: 180px;
 	position: relative;
-	z-index: 10;
+	z-index: 1100;
+	border-radius: 10px;
+	box-shadow: 0 0 34px rgba(255,255,255,0.4);
+	-webkit-transition: top .8s;
+}
+
+.EIWcollapsed .eventinput{
+	top: -210px;
+}
+
+.eventinput i{
+	position: absolute;
+	right: -13px;
+	top: -13px;
+	border-color: rgba(255,255,255,0.7);
+}
+
+.eventinput i:hover{
+	color: #D11;
+	border-color: rgba(255,0,0,0.7);
 }
 
 .eventinput h2{
-	padding-left: 70px;
+	text-align: center;
+	width: 100%;
 	font-weight: normal;
 	margin: 0;
 }
 
 .eventinput label{
-	width: 60px;
+	width: 120px;
 	text-align: right;
 	padding-right: 10px;
 	float: left;
