@@ -1,3 +1,3 @@
 
-# Can ignore specific files
-config.inc.php
+# Ignore live config file which will contain sensitive security information
+public_html/config.inc.php
