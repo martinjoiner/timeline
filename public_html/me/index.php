@@ -1,25 +1,24 @@
 <?php
 session_start();
-include("login_funcs.inc.php");
+include( $_SERVER['DOCUMENT_ROOT'] . "/login_funcs.inc.php");
 // If the user has not logged in
 if(!isLoggedIn()){
-    header('Location: index.php');
+    header('Location: /');
     die();
 }
-?><!doctype html> 
-<html lang="en">
+?><!DOCTYPE html> 
+<html>
 <head>
     <meta charset="utf-8" />
     <title>Timeline</title>
 
-    <?php include("head_includes.inc.php"); ?>
-    <link rel="stylesheet" href="css/mine.css" />
-    <script src="js/timeline.js"></script>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/head_includes.inc.php"); ?>
+    <link rel="stylesheet" href="/css/mine.css" />
 </head>
 <body>
 	<div class="header">
 		<h1>Timeline</h1>
-		<div class="loggedin">Logged in as <?php print $_SESSION['username']; ?><br><a href="logout.php">Logout</a></div>
+		<div class="loggedin">Logged in as <?php print $_SESSION['username']; ?><br><a href="/logout.php">Logout</a></div>
 	</div>
 
 	<label for="scale">Scale</label><input type="number" id="scale" name="scale" value="26">
@@ -42,7 +41,7 @@ if(!isLoggedIn()){
 
 	<?php 
 
-	include("db_connect.inc.php"); 
+	include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php"); 
 	$q = mysql_query("	SELECT `category`.name AS category_name,`category`.height, event.`name`, event.`start`, event.`end`, event.colour
 						FROM event
 						LEFT JOIN `category` ON event.category_id = category.id
@@ -85,6 +84,8 @@ if(!isLoggedIn()){
 		<input type="button" value="Add">
 	</div>
 </div>
+
+<script src="/js/timeline.js"></script>
 	
 </body>
 </html>

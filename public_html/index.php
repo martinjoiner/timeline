@@ -1,21 +1,19 @@
 <?php
 session_start();
-include("login_funcs.inc.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/login_funcs.inc.php");
 // If the user has not logged in
 if(isLoggedIn()){
-    header('Location: mine.php');
+    header('Location: /me/');
     die();
 }
-?><!doctype html>
- 
-<html lang="en">
+?><!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <title>Timeline</title>
 
-    <?php include("head_includes.inc.php"); ?>
-    <link rel="stylesheet" href="css/index.css" />
-    <script src="js/index.js"></script>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/head_includes.inc.php"); ?>
+    <link rel="stylesheet" href="/css/index.css" />
 </head>
 <body>
 	<div class="header">
@@ -54,6 +52,9 @@ if(isLoggedIn()){
 		    <input type="submit" value="Register" /><br>
 		</form>
 	</div>
+
 		
+    <script src="/js/index.js"></script>
+
 </body>
 </html>

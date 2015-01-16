@@ -2,7 +2,7 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-include("db_connect.inc.php");
+include( $_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php");
 
 $username = mysql_real_escape_string($username);
 $query = "SELECT id, password, salt
@@ -21,10 +21,10 @@ if($hash != $userData['password']) //incorrect password
     header('Location: index.php?msg=Incorrect Password');
 }
 else{
-	include("login_funcs.inc.php");
+	include( $_SERVER['DOCUMENT_ROOT'] . "/login_funcs.inc.php");
 	session_start();
     validateUser($userData['id'],$username); //sets the session data for this user
-	header('Location: mine.php');
+	header('Location: /me/');
 }
 
 // If the script has got this far, something's wrong
