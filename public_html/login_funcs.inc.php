@@ -7,17 +7,19 @@ function validateUser($user_id,$username){
 	$_SESSION['username'] = $username;
 }
 
-function isLoggedIn()
-{
+function isLoggedIn(){
     if(isset($_SESSION['valid']) && $_SESSION['valid'])
         return true;
     return false;
 }
 
-function logout()
-{
+function logout(){
     $_SESSION = array(); //destroy all of the session variables
     session_destroy();
+}
+
+function saltAndHash( $salt, $password ){
+	return hash('sha256', $salt . hash('sha256', $password) );
 }
 
 ?>

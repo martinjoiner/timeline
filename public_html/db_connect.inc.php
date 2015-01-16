@@ -6,5 +6,9 @@ if( !file_exists($_SERVER['DOCUMENT_ROOT'] . "/config.inc.php") ){
 }
 
 include( $_SERVER['DOCUMENT_ROOT'] . "/config.inc.php");
-$dbh = mysql_connect ("localhost", $db_username, $db_password) or die ('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db ($db_database); 
+
+try {
+	$db = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_database . ';charset=utf8', $db_username, $db_password);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage() . "\n";
+}

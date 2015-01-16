@@ -5,6 +5,7 @@
  Populate all the variables with the correct information for your server configuration.
 */
 
+$db_host = 'localhost';
 $db_username = '';
 $db_password = '';
 $db_database = '';

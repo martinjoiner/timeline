@@ -42,28 +42,39 @@ if(!isLoggedIn()){
 	<?php 
 
 	include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php"); 
-	$q = mysql_query("	SELECT `category`.name AS category_name,`category`.height, event.`name`, event.`start`, event.`end`, event.colour
-						FROM event
-						LEFT JOIN `category` ON event.category_id = category.id
-						WHERE `category`.user_id = ".$_SESSION['user_id']." AND event.user_id = ".$_SESSION['user_id']."
-						ORDER BY `category`.`id`
-					");
+
+	$qryEventCode = $db->prepare("	SELECT `category`.name AS category_name,
+											`category`.height, 
+											`event`.`name`, 
+											`event`.`start`, 
+											`event`.`end`, 
+											`event`.`colhex` 
+									FROM `event`
+									LEFT JOIN `category` ON `event`.`category_id` = `category`.`id`
+									WHERE `category`.user_id = :userID 
+									AND `event`.`user_id` = :userID 
+									ORDER BY `category`.`id`
+								"); 
+	$qryEventCode->bindValue('userID', $_SESSION['user_id'], PDO::PARAM_INT);
+	$qryEventCode->execute();
+	$r = $qryEventCode->fetchAll(PDO::FETCH_ASSOC);
+	$qryEventCode->closeCursor();
 
 	$currentcat = "";
 	$counter = 0;
-	while($r = mysql_fetch_array($q)){
-		if($currentcat != $r["category_name"]){
+	foreach($r as $thisR){
+		if($currentcat != $thisR["category_name"]){
 			if($currentcat != ""){
 				print '</div>';
 			}
-			$currentcat = $r["category_name"];
-			print '<div class="resizable ui-widget-content cat'.$counter++.'" data-height="'.$r["height"].'">';
-			print '<h2>'.$r["category_name"].'</h2>';
+			$currentcat = $thisR["category_name"];
+			print '<div class="resizable ui-widget-content cat'.$counter++.'" data-height="'.$thisR["height"].'">';
+			print '<h2>'.$thisR["category_name"].'</h2>';
 		}
-		print '<div class="element" data-start="'.$r["start"].'" data-end="'.$r["end"].'" style="background-color: #'.$r["colour"].';">
-				<div class="start date">'.date("M-d-Y",$r["start"]).'</div>
-				<div class="end date">'.date("M-d-Y",$r["end"]).'</div>
-				<h3>'.$r["name"].'</h3>
+		print '<div class="element" data-start="'.$thisR["start"].'" data-end="'.$thisR["end"].'" style="background-color: #'.$thisR["colhex"].';">
+				<div class="start date">'.date("M-d-Y",$thisR["start"]).'</div>
+				<div class="end date">'.date("M-d-Y",$thisR["end"]).'</div>
+				<h3>'.$thisR["name"].'</h3>
 			</div>';
 	}
 	print '</div>';
@@ -77,7 +88,7 @@ if(!isLoggedIn()){
 	<div class="eventinput">
 		<i>X</i>
 		<h2>Add event</h2>
-		<label>Name</label> <input type="name"><br>
+		<label for="name">Name</label> <input type="name" id="name"><br>
 		<label for="username">Colour</label><input type="color" name="colour" maxlength="30" /><br>
 		<label>Start</label> <input type="date" name="startdate"><br>
 		<label>End</label> <input type="date" name="enddate"><br>
