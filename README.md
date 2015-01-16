@@ -4,7 +4,7 @@ A meditation aid for people who benefit from visual presentation of information.
 
 Can you immediately conjure up a typical snapshot of your everyday at any point in the past? If the answer is no, but you would like to, this tool may help. 
 
-[Timeline](timeline.butterscotchworld.co.uk)
+[Timeline](http://timeline.butterscotchworld.co.uk)
 
 ## Technology
 
