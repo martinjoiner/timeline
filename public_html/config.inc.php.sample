@@ -1,0 +1,10 @@
+<?php
+
+/*
+ This is a sample file, make a copy and rename it to config.inc.php in the root of the site. 
+ Populate all the variables with the correct information for your server configuration.
+*/
+
+$db_username = '';
+$db_password = '';
+$db_database = '';
