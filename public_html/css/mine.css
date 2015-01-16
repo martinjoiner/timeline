@@ -1,20 +1,21 @@
+
 .header{ 
 	width: 100%;
 	float: left;
 	color: #fff;
 	text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
 	background: #020031; /* Old browsers */
-	background: -moz-linear-gradient(45deg,  #1b005f 0%, #005b95 100%); /* FF3.6+ */
+	background: -moz-linear-gradient(45deg, #1b005f 0%, #005b95 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#1b005f), color-stop(100%,#005b95)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* IE10+ */
-	background: linear-gradient(45deg,  #1b005f 0%,#005b95 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b005f', endColorstr='#005b95',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background: -webkit-linear-gradient(45deg, #1b005f 0%, #005b95 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(45deg, #1b005f 0%, #005b95 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(45deg, #1b005f 0%, #005b95 100%); /* IE10+ */
+	background: linear-gradient(45deg, #1b005f 0%, #005b95 100%); /* W3C */
+
 	-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
-	 -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
-	      box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
-	margin-bottom: 40px;
+	   -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+			box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2), 0 3px 7px rgba(0,0,0,.3);
+	margin-bottom: 10px;
 }
 
 
@@ -22,101 +23,112 @@
 
 .header h1{
 	margin: 8px;
-	font-size: 1.5em;
+	font-size: 2em;
 	float: left;
-	width: 40%;
 }
 
 .loggedin{
 	margin: 8px;
 	text-align: right;
-	font-size: 0.9em;
 }
 
 .date{
-	font-size: 0.7em;
-	position: absolute;
+	font-size: 0.9em;
 	background-color: #FFF;
 	background-color: rgba(255,255,255,0.5);
 	border-radius: .3em;
 	padding: .3em;
-	top: 50%;
-	display: none;
-	z-index: 1001;
 }
 
-.start.date{
+.pageControls{
 	float: left;
-	text-align: left;
+	width: 100%;
+	margin-bottom: 10px;
 }
 
-.end.date{
-	right: 10px;
-	text-align: right;
+.pageControls label{
+	margin: 0 1em;
 }
 
-.element{ 
-	padding: 0.3em;
-	border-radius: .5em;
-	position: absolute; 
-	margin: 10px 0 0 0;
-	top: 0;
-	left: 0;
-	box-sizing: border-box;
+.pageControls input[type=number]{
+	width: 60px;
+}
+
+.window{
+	width: 100%;
 	overflow: hidden;
 }
 
-.arrow{
-	width: 0;
-	height: 0;
-	border-top: transparent 12px solid;
-	border-bottom: transparent 12px solid;
-	border-left: rgba(160,160,160,0.5) 10px solid;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	float: right;
+.lifeBoard{
+	position: relative;
+	-webkit-transiton: filter .2s;
+	transiton: filter .2s;
 }
 
-.element h3{
-	margin: 0;
-	font-size: 12px;
+.lifeBoard.blurred{
+	-webkit-filter: blur(3px); 
+	   -moz-filter: blur(3px); 
+		-ms-filter: blur(3px); 
+		 -o-filter: blur(3px); 
+			filter: blur(3px);
 }
-.resizable h2{ 
-	color: #DDD;
-	font-size: 18px;
+
+.newYear{ 
 	position: absolute;
-	float: left; 
+	font-size: 0.9em;
+	padding-left: .5em;
+	border-left: 1px solid #CCC;
+	color: #999;
+	height: 600px;
+}
+
+.topLifeBoardSpacer{
+	width: auto;
+	height: 20px;
+}
+
+.categoryRow h2{ 
+	color: #DDD;
+	position: absolute;
 	background-color: rgba(0,0,0,0.8);
-	border: 1px solid #AAA;
 	border-top: 0;
 	border-left: 0;
 	padding: 0 .5em .1em .5em;
-	font-size: 1em;
+	font-size: 1.2em;
 	font-weight: normal;
 	margin: 0;
 	z-index: 10;
-	border-bottom-right-radius: .5em;
 }
-.resizable { 
+
+.categoryRow{ 
 	width: auto;
-	overflow: hidden;
 	border: 0;
 	background: transparent;
 }
-.resizable .element{background-color: #BFF; }
 
-.ui-resizable-s{ border-top: 1px solid #AAA; }
+.categoryRow .element{
+	background-color: #BFF; 
+}
 
-.newyear{ 
-	top: 60px;
-	left: 100px;
-	font-size: .9em;
-	padding-left: .5em;
+.ui-resizable-s{ 
+	border-top: 1px solid #CCC; 
+}
+
+.categoryRow .element{ 
+	padding: 0.3em;
 	position: absolute; 
-	border-left: 1px solid #222;
-	color: #666;
-	height: 600px;
+	margin-top: 10px;
+	top: 0;
+	left: 0;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	overflow: hidden;
+}
+
+.categoryRow .element h3{
+	margin: 0;
+	font-size: 1.1em;
 }
 
 /* -------------- EVENT INPUT --------------- */
@@ -128,7 +140,8 @@
 	padding-top: 200px;
 }
 
-.addwrap i, .eventinput i{
+.addwrap i, 
+.eventInput i{
 	display: block;
 	-webkit-transition: color .5s, border-color .5s;
 	font-weight: bold;
@@ -154,7 +167,7 @@
 	border-color: rgba(0,255,0,0.7);
 }
 
-.eventinputwrap{
+.eventInputwrap{
 	width: 0px;
 	height: 100%;
 	position: absolute;
@@ -163,17 +176,19 @@
 	left: 0;
 	background-color: rgba(0,0,0,0.7);
 	z-index: 1050;
-	-webkit-transition: height .8s;
+	-webkit-transition: height .3s;
+	   -moz-transition: height .3s;
+			transition: height .3s;
 }
 
 .EIWcollapsed{
 	height: 0%;
 }
 
-.eventinput{
+.eventInput{
 	top: 170px;
 	left: -215px;
-	background-color: rgba(0,0,0,0.9);
+	background-color: #FFF;
 	padding: 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -181,35 +196,43 @@
 	height: 180px;
 	position: relative;
 	z-index: 1100;
-	border-radius: 10px;
-	box-shadow: 0 0 34px rgba(255,255,255,0.4);
-	-webkit-transition: top .8s;
+	border-radius: 6px;
+	box-shadow: 0 12px 34px -10px rgba(0,0,0,0.8);
+	-webkit-transition: top .3s;
+	   -moz-transition: top .3s;
+			transition: top .3s;
 }
 
-.EIWcollapsed .eventinput{
+.EIWcollapsed .eventInput{
 	top: -210px;
 }
 
-.eventinput i{
+.eventInput i{
 	position: absolute;
 	right: -13px;
 	top: -13px;
 	border-color: rgba(255,255,255,0.7);
 }
 
-.eventinput i:hover{
+.eventInput i:hover{
 	color: #D11;
 	border-color: rgba(255,0,0,0.7);
 }
 
-.eventinput h2{
+.eventInput h2{
 	text-align: center;
 	width: 100%;
 	font-weight: normal;
 	margin: 0;
 }
 
-.eventinput label{
+.eventInput .formRow{
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.eventInput .formRow label{
 	width: 120px;
 	text-align: right;
 	padding-right: 10px;

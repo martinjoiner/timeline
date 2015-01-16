@@ -1,3 +1,4 @@
+
 .header{ 
 	width: 100%;
 
@@ -34,7 +35,6 @@
 }
 
 input{ margin: 0 0 1em 0; }
-label{ font-size: .9em; }
 
 .header h1 {
   font-size: 80px;
@@ -70,7 +70,6 @@ label{ font-size: .9em; }
 .regwrap{
 	margin: 0 0 0 60%;
 	width: 300px;
-	color: #AAA;
 }
 .regwrap label{
 	float: right;

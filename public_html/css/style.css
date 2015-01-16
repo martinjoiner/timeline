@@ -5,7 +5,8 @@
 body{
 	margin: 0;
 	padding: 0;
-	background-color: #111;
-	color: #DDD;
+	background-color: #EEE;
+	color: #222;
 	min-width: 770px;
+	font-size: 12px;
 }

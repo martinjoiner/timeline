@@ -58,6 +58,7 @@ if( sizeof($r) ){
 		}
 		$skvReturn['skvCategories'][ $cntCats ]['id'] = intval($thisR['categoryID']);
 		$skvReturn['skvCategories'][ $cntCats ]['name'] = $thisR['categoryName'];
+		$skvReturn['skvCategories'][ $cntCats ]['height'] = $thisR['categoryHeight'];
 		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
 		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
 		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
