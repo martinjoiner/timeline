@@ -1,3 +1,7 @@
 
 # Ignore live config file which will contain sensitive security information
 public_html/config.inc.php
+
+# Ignore log files but not the logs folder
+logs/*
+!logs/README.md
