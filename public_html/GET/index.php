@@ -4,6 +4,14 @@ session_start();
 
 header('Content-Type: application/json');
 
+if( !$_SESSION['user_id'] ){
+	$skvReturn['success'] = false;
+	$skvReturn['error'] = 'No user logged in';
+	// Print structure in JSON format
+	echo json_encode($skvReturn);
+	exit;
+}
+
 include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php"); 
 
 // Query database using server session user id
@@ -33,38 +41,47 @@ $cntCats = -1;
 $cntEventsInCat = 0;
 $earliestStart = null;
 $latestEnd = null;
-foreach( $r as $thisR ){
 
-	if( $thisR['categoryID'] != $curCat ){
-		$cntEventsInCat = 0;
-		$cntCats++;
-		$curCat = $thisR['categoryID'];
-	} else {
-		$cntEventsInCat++;
-	}
-	$skvReturn['skvCategories'][ $cntCats ]['id'] = intval($thisR['categoryID']);
-	$skvReturn['skvCategories'][ $cntCats ]['name'] = $thisR['categoryName'];
-	$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
-	$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
-	$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
-	$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['colhex'] = $thisR['colhex'];
+$skvReturn['success'] = true;
+$skvReturn['cntEvents'] = sizeof($r);
 
-	$tempStart = new DateTime( $thisR['startdate'] );
-	if( is_null($earliestStart) || $tempStart < $earliestStart ){
-		$earliestStart = $tempStart;
+if( sizeof($r) ){
+
+	foreach( $r as $thisR ){
+
+		if( $thisR['categoryID'] != $curCat ){
+			$cntEventsInCat = 0;
+			$cntCats++;
+			$curCat = $thisR['categoryID'];
+		} else {
+			$cntEventsInCat++;
+		}
+		$skvReturn['skvCategories'][ $cntCats ]['id'] = intval($thisR['categoryID']);
+		$skvReturn['skvCategories'][ $cntCats ]['name'] = $thisR['categoryName'];
+		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
+		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
+		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
+		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['colhex'] = $thisR['colhex'];
+
+		$tempStart = new DateTime( $thisR['startdate'] );
+		if( is_null($earliestStart) || $tempStart < $earliestStart ){
+			$earliestStart = $tempStart;
+		}
+
+		$tempEnd = new DateTime( $thisR['enddate'] );
+		if( is_null($tempEnd) || $tempEnd > $latestEnd ){
+			$latestEnd = $tempEnd;
+		}
+
 	}
 
-	$tempEnd = new DateTime( $thisR['enddate'] );
-	if( is_null($tempEnd) || $tempEnd > $latestEnd ){
-		$latestEnd = $tempEnd;
-	}
+	// Add meta data for overall life
+	$skvReturn['lifeStart'] = $earliestStart->format( 'Y-n-j' );
+	$skvReturn['lifeEnd'] = $latestEnd->format( 'Y-n-j' );
+	$diffParts = $earliestStart->diff( $latestEnd );
+	$skvReturn['lifeDays'] = $diffParts->days;
 
 }
-
-// Add meta data for overall life
-$skvReturn['lifeStart'] = $earliestStart->format( 'Y-n-j' );
-$skvReturn['lifeEnd'] = $latestEnd->format( 'Y-n-j' );
-$skvReturn['lifeDays'] = $earliestStart->diff( $latestEnd );
 
 // Print structure in JSON format
 echo json_encode($skvReturn);
