@@ -4,8 +4,21 @@ A meditation aid for people who benefit from visual presentation of information.
 
 Can you immediately conjure up a typical snapshot of your everyday at any point in the past? If the answer is no, but you would like to, this tool may help. 
 
-[Timeline](http://timeline.butterscotchworld.co.uk)
+Start using today by creating an account at [Timeline](http://timeline.butterscotchworld.co.uk)
 
 ## Technology
 
 HTML5 + Javascript
+
+# To-do
+
+## New features
+
+* Make events editable
+* Graphical horizontal scroll control
+
+## Bug fixes
+
+* Update new year makers when life span moves further into past or future
+* Stop accidental creation of duplicate categories
+* Improve feedback on account creation process

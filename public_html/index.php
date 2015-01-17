@@ -31,16 +31,26 @@ if(isLoggedIn()){
 		<div class="contwrap">
 			<h1>Timeline</h1>
 
+			<?php 
+			if( $_GET['msg'] ){
+				?>
+				<div class="msg">
+					<?=htmlspecialchars( $_GET['msg'] )?>
+				</div>
+				<?php
+			}
+			?>
+
 			<h2>Login</h2>
 
 			<form class="frmLogin" action="login.php" method="post">
 			    <div class="formRow">
 			    	<label for="username">Username</label>
-			    	<input type="text" id="username" name="username" maxlength="30" />
+			    	<input type="text" id="username" name="username" maxlength="30" value="<?=sanitiseUsername( $_GET['username'] )?>">
 			    </div>
 			    <div class="formRow">
 			    	<label for="password">Password</label>
-			    	<input type="password" name="password" />
+			    	<input type="password" id="password" name="password" />
 			    </div>
 			    <input type="submit" value="Login" /><br>
 			</form>
@@ -49,20 +59,20 @@ if(isLoggedIn()){
 	</div>
 
 	<div class="regWrap">
-		<h2>Create Account</h2>
+		<h2>Create a new account</h2>
 
 		<form name="register" action="register.php" method="post">
 			<div class="formRow">
 				<label for="username">Username</label>
-		    	<input type="text" name="username" id="username" maxlength="30" />
+		    	<input type="text" name="username" id="username" maxlength="30" required>
 		    </div>
 			<div class="formRow">
 		    	<label for="pass1">Password</label>
-		    	<input type="password" name="pass1" id="pass1">
+		    	<input type="password" name="pass1" id="pass1" required>
 		    </div>
 		    <div class="formRow">
 		    	<label for="pass2">Password Again</label>
-		    	<input type="password" name="pass2" id="pass2">
+		    	<input type="password" name="pass2" id="pass2" required>
 		    </div>
 		    <div>
 		    	<input type="submit" value="Register" />
@@ -70,7 +80,6 @@ if(isLoggedIn()){
 		</form>
 	</div>
 
-		
     <script src="/js/index.js"></script>
 
 </body>

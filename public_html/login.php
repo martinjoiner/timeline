@@ -4,9 +4,6 @@ $password = $_POST['password'];
 
 include( $_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php");
 
-$username = mysql_real_escape_string($username);
-
-
 // Query database using server session user id
 $qryUser = $db->prepare("	SELECT `id`, `password`, `salt` 
 					        FROM `user`

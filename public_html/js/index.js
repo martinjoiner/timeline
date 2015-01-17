@@ -1,7 +1,12 @@
 var docWidth = 1000;
 
+var elemUsername = $("#username");
+if( elemUsername.val() ){
+	$('#password').focus();
+} else {
+	elemUsername.focus();
+}
 
-$("#username").focus();
 setStartPos();
 $('.vertline').each( function(){
 	if($(this).hasClass('back')){

@@ -22,4 +22,9 @@ function saltAndHash( $salt, $password ){
 	return hash('sha256', $salt . hash('sha256', $password) );
 }
 
-?>
+function sanitiseUsername( $strUsername ){
+    $strUsername = trim( $strUsername );
+    $strUsername = preg_replace('/ +/','_',$strUsername);
+    $strUsername = preg_replace('/[^a-zA-Z0-9-_]/', '', $strUsername);
+    return strToLower( $strUsername );
+}
