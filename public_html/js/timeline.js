@@ -50,14 +50,15 @@ function dayDiffStr( strDate1, strDate2 ){
 }
 
 
-$('.eventInput i').click( function(){ 
+$('.eventInput i, #btnCancelAddEvent').click( function(){ 
     $('.eventInputwrap').addClass('EIWcollapsed');
     $('.lifeBoard').removeClass('blurred');	 
 });
 
-$('.addwrap i').click( function(){ 
+$('.btnAddEvent').click( function(){ 
     $('.eventInputwrap').removeClass('EIWcollapsed');
-    $('.lifeBoard').addClass('blurred');     
+    $('.lifeBoard').addClass('blurred');    
+    $('.eventInput input#name').focus(); 
 });
 
 
@@ -100,10 +101,53 @@ function fetchData(){
         config.totalLifeDays = data.lifeDays;
         config.strLifeStart = data.lifeStart;
         config.strLifeEnd = data.lifeEnd;
+        populateNewYearMarkers();
+        processCategories( data.arrCategories );
         rescale();
         
     });
 
+}
+
+
+// Iterates through the years of the lifespan ensuring the newYear marker elements exist and creating them if not
+function populateNewYearMarkers(){
+    var start = parseInt( config.strLifeStart.match(/^[0-9]{4}/) );
+    var end = parseInt( config.strLifeEnd.match(/^[0-9]{4}/) );
+    var elem;
+    for( var i = end; i >= start; i--){
+        elem = $('.newYear#n' + i);
+        if( !elem.length ){
+            $('.lifeBoard').prepend( '<div class="newYear" id="n' + i + '">' + i + '</div>' )
+        }
+    }
+}
+
+
+function processCategories( arrCategories ){
+    
+    for( var i = 0, iLimit = arrCategories.length; i < iLimit; i++ ){
+        processCategory( arrCategories[i] );
+    }
+}
+
+
+// Takes a structure representing a category and populates the DOM with the data
+function processCategory( skvCategory ){
+
+    // Check for the existence of the category
+    var elem = $('#c' + skvCategory['id'] );
+    if( elem.length ){
+        console.log( "Great! The category exists" );
+    }
+
+    for( var i = 0, iLimit = skvCategory.arrEvents.length; i < iLimit; i++ ){
+        elem = $('#e' + skvCategory.arrEvents[i]['id']);
+        if( elem.length ){
+            console.log( "Cool! The event element exists" );
+            elem.css( { 'background-color': getRandomShadeOfHue(skvCategory.hue) } );
+        }
+    }
 }
 
 
@@ -139,7 +183,7 @@ function rescale(){
 
     // Iterate through all the newYear markers positioning them appropriately
     $(".newYear").each( function(){
-        var daysSinceLifeStart = dayDiffStr(config.strLifeStart, $(this).data('start') ) ;
+        var daysSinceLifeStart = dayDiffStr(config.strLifeStart, $(this).html() + '-01-01' ) ;
         var leftPixels = daysSinceLifeStart * config.pixelsPerDay;
         $(this).css({ 'margin-left': leftPixels +'px'});
     });
@@ -147,3 +191,23 @@ function rescale(){
 }
 
 fetchData();
+
+
+// Returns a random integer in the range provided
+function rand(min, max){
+    if( typeof min === 'undefined' ){
+        min = 0;
+    }
+    if( typeof max === 'undefined' ){
+        max = 100;
+    }
+    return parseInt(Math.random() * (max-min+1), 10) + min;
+}
+
+
+// Takes a hue and returns a random shade of it 
+function getRandomShadeOfHue( hue ){
+    var s = 40; // saturation fixed at 40 for this application
+    var l = rand(40, 60); // lightness 30-70%
+    return 'hsl(' + hue + ',' + s + '%,' + l + '%)';
+}

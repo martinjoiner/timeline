@@ -46,6 +46,11 @@
 	margin-bottom: 10px;
 }
 
+.pageControls .controlWrap{
+	float: left;
+	margin-right: 1em;
+}
+
 .pageControls label{
 	margin: 0 1em;
 }
@@ -127,23 +132,67 @@
 }
 
 .categoryRow .element h3{
-	margin: 0;
+	margin: 0 5px 5px 0;
 	font-size: 1.1em;
+	text-shadow: 0 -1px 0 rgba(255,255,255,0.2);
 }
 
 /* -------------- EVENT INPUT --------------- */
 /* ------------------------------------------ */
 
-.addwrap{
-	width: 100%;
+
+/* Add event Button */
+
+.btnAddEvent{
+	display: block;
 	z-index: 1050;
-	padding-top: 200px;
+	cursor: pointer;
+	height: 30px;
+	padding: 0 8px;
+	background: #01528F;
+	box-shadow: inset 0 -1px 1px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,1), 2px 4px 2px -2px rgba(0,0,0,0.1);
+	border-radius: 8px;
+	color: #EEE;
 }
 
-.addwrap i, 
+.btnAddEvent *{
+	display: block;
+	float: left;
+	height: 20px;
+}
+
+.btnAddEvent i{
+	margin: 0 8px 0 0;
+	box-shadow: inset 0 2px 3px rgba(0,0,0,.4), inset 0 -1px 2px rgba(255,255,255,.8);
+	border-radius: 50%;
+	width: 20px;
+	line-height: 22px;
+	color: #CCC;
+}
+
+.btnAddEvent span{
+	line-height: 20px;
+}
+
+.btnAddEvent:hover{
+	background: #095e9b;
+}
+
+.btnAddEvent:hover i{
+	color: #FFF;
+}
+
+.btnAddEvent:hover span{
+	color: #FFF;
+}
+
+
+
 .eventInput i{
 	display: block;
 	-webkit-transition: color .5s, border-color .5s;
+	   -moz-transition: color .5s, border-color .5s;
+			transition: color .5s, border-color .5s;
 	font-weight: bold;
 	line-height: 28px;
 	font-style: normal;
@@ -156,15 +205,6 @@
 	font-size: 16px;
 	border-radius: 13px;
 	border: 1px solid rgba(0,0,0,0.9);
-}
-
-.addwrap i{
-	margin: 0 auto;
-}
-
-.addwrap i:hover{
-	color: #1D1;
-	border-color: rgba(0,255,0,0.7);
 }
 
 .eventInputwrap{
@@ -186,31 +226,28 @@
 }
 
 .eventInput{
-	top: 170px;
-	left: -215px;
+	margin-top: 170px;
+	margin-left: -215px;
 	background-color: #FFF;
 	padding: 15px;
-	margin-left: auto;
-	margin-right: auto;
 	width: 400px;
 	height: 180px;
-	position: relative;
 	z-index: 1100;
 	border-radius: 6px;
 	box-shadow: 0 12px 34px -10px rgba(0,0,0,0.8);
-	-webkit-transition: top .3s;
-	   -moz-transition: top .3s;
-			transition: top .3s;
+	-webkit-transition: margin-top .3s;
+	   -moz-transition: margin-top .3s;
+			transition: margin-top .3s;
 }
 
 .EIWcollapsed .eventInput{
-	top: -210px;
+	margin-top: -220px;
 }
 
 .eventInput i{
 	position: absolute;
-	right: -13px;
-	top: -13px;
+	margin-left: 400px;
+	margin-top: -26px;
 	border-color: rgba(255,255,255,0.7);
 }
 

@@ -1,12 +1,31 @@
 *{
 	font-family: arial, san-serif;
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body{
-	margin: 0;
-	padding: 0;
 	background-color: #EEE;
 	color: #222;
 	min-width: 770px;
 	font-size: 12px;
+}
+
+input,
+select{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+}
+
+input[type=text],
+input[type=email],
+input[type=password]{
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
+	background-color: white;
+}
+
+h2{
+	margin: 0 0 .5em 0;
 }

@@ -18,10 +18,11 @@ include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php");
 $qryEventCode = $db->prepare("	SELECT 	`category`.`id` AS categoryID, 
 										`category`.`name` AS categoryName,
 										`category`.`height` AS categoryHeight,
+										`category`.`hue` AS categoryHue,
+										`event`.`id` as eventID, 
 										`event`.`name` as eventName, 
 										`event`.`startdate`, 
-										`event`.`enddate`, 
-										`event`.`colhex` 
+										`event`.`enddate`
 								FROM `event`
 								LEFT JOIN `category` ON `event`.`category_id` = `category`.`id`
 								WHERE `category`.user_id = :userID 
@@ -56,20 +57,21 @@ if( sizeof($r) ){
 		} else {
 			$cntEventsInCat++;
 		}
-		$skvReturn['skvCategories'][ $cntCats ]['id'] = intval($thisR['categoryID']);
-		$skvReturn['skvCategories'][ $cntCats ]['name'] = $thisR['categoryName'];
-		$skvReturn['skvCategories'][ $cntCats ]['height'] = $thisR['categoryHeight'];
-		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
-		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
+		$skvReturn['arrCategories'][ $cntCats ]['id'] = intval($thisR['categoryID']);
+		$skvReturn['arrCategories'][ $cntCats ]['name'] = $thisR['categoryName'];
+		$skvReturn['arrCategories'][ $cntCats ]['height'] = $thisR['categoryHeight'];
+		$skvReturn['arrCategories'][ $cntCats ]['hue'] = $thisR['categoryHue'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['id'] = $thisR['eventID'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
 
 		// A null end date means the period is current
 		if( is_null($thisR['enddate']) ){
 			$thisR['enddate'] = date('Y-n-j');
 		}
-		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
 		
-
-		$skvReturn['skvCategories'][ $cntCats ]['skvEvents'][$cntEventsInCat]['colhex'] = $thisR['colhex'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['colhex'] = $thisR['colhex'];
 
 		$tempStart = new DateTime( $thisR['startdate'] );
 		if( is_null($earliestStart) || $tempStart < $earliestStart ){

@@ -22,19 +22,24 @@ if(!isLoggedIn()){
 	</div>
 
 	<div class="pageControls">
-		<label for="zoom">Zoom</label><input type="number" id="zoom" name="zoom" value="0" min="0" max="20" step="1">
-		<label for="offset">Offset</label><input type="number" id="offset" name="offset" value="0" step="10">
+
+		<div class="controlWrap">
+			<label for="zoom">Zoom</label><input type="number" id="zoom" name="zoom" value="0" min="0" max="20" step="1">
+		</div>
+
+		<div class="controlWrap">
+			<label for="offset">Offset</label><input type="number" id="offset" name="offset" value="0" step="10">
+		</div>
+
+		<button class="btnAddEvent">
+			<i>+</i>
+			<span>Add event</span>
+		</button>
 	</div>
 
 	<div class="window">
 
 		<div class="lifeBoard">
-
-			<?php
-			for( $i = 1980; $i < 2016; $i++ ){
-				print '<div class="newYear" data-start="' . $i . '-01-01">' . $i . '</div>';
-			}
-			?>
 
 			<div class="topLifeBoardSpacer"></div>
 
@@ -43,11 +48,12 @@ if(!isLoggedIn()){
 			include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php"); 
 
 			$qryEventCode = $db->prepare("	SELECT `category`.name AS category_name,
+													`category`.id as categoryID, 
 													`category`.height, 
+													`event`.`id`, 
 													`event`.`name`, 
 													`event`.`startdate`, 
-													`event`.`enddate`, 
-													`event`.`colhex` 
+													`event`.`enddate`
 											FROM `event`
 											LEFT JOIN `category` ON `event`.`category_id` = `category`.`id`
 											WHERE `category`.user_id = :userID 
@@ -67,10 +73,10 @@ if(!isLoggedIn()){
 						print '</div>';
 					}
 					$currentcat = $thisR["category_name"];
-					print '<div class="categoryRow resizable ui-widget-content cat'.$counter++.'" data-height="'.$thisR["height"].'">';
-					print '<h2>'.$thisR["category_name"].'</h2>';
+					print '<div class="categoryRow resizable ui-widget-content cat'.$counter++.'" data-height="'.$thisR["height"].'" id="c' . $thisR['categoryID'] . '">';
+					print '<h2>'.$thisR["category_name"] . '&#133;</h2>';
 				}
-				print '<div class="element" data-start="'.$thisR["startdate"].'" data-end="'.$thisR["enddate"].'" style="background-color: #'.$thisR["colhex"].';">
+				print '<div class="element" id="e' . $thisR["id"] . '" data-start="' . $thisR["startdate"] . '" data-end="'.$thisR["enddate"].'" >
 						<h3>' . $thisR["name"] . '</h3>
 						<span class="start date">'. $thisR["startdate"] .'</span> 
 						<span class="end date">'. $thisR["enddate"] . '</span>
@@ -83,25 +89,17 @@ if(!isLoggedIn()){
 
 	</div><!-- /.window -->
 
-	<div class="addwrap">
-		<i>+</i>
-	</div>
-
 	<div class="eventInputwrap EIWcollapsed">
 		<div class="eventInput">
 			<i>X</i>
 			<h2>Add event</h2>
 			<div class="formRow">
 				<label for="name">Name</label>
-				<input type="name" id="name">
+				<input type="text" id="name">
 			</div>
 			<div class="formRow">
 				<label for="category_id">Category</label>
 				<select id="category_id"></select><br>
-			</div>
-			<div class="formRow">
-				<label for="username">Colour</label>
-				<input type="color" name="colour" maxlength="30" />
 			</div>
 			<div class="formRow">
 				<label>Start</label>
@@ -113,8 +111,8 @@ if(!isLoggedIn()){
 			</div>
 			<div class="formRow">
 				<label>&nbsp;</label>
-				<input type="button" value="Cancel" class="btnCancel">
-				<input type="button" value="Add" class="btnAdd">
+				<input type="button" value="Cancel" id="btnCancelAddEvent">
+				<input type="button" value="Add" id="btnSubmitAddEvent">
 			</div>
 		</div>
 	</div>

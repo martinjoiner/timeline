@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(255) DEFAULT NULL,
   `height` int(11) NOT NULL DEFAULT '90',
   `priority` int(11) NOT NULL DEFAULT '1',
+  `hue` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_category_user` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
@@ -20,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `event` (
   `name` varchar(255) DEFAULT NULL,
   `startdate` date NOT NULL,
   `enddate` date DEFAULT NULL,
-  `colhex` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_event_category` (`category_id`),
   KEY `fk_event_user` (`user_id`)
