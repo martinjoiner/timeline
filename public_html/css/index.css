@@ -27,6 +27,32 @@
 	height: 550px;
 }
 
+.frmLogin{
+	width: 310px;
+	margin: 0 auto;
+}
+
+.frmLogin .formRow{
+	float: left;
+	width: 100%;
+}
+
+.frmLogin .formRow label{
+	line-height: 32px;
+	width: 76px;
+	float: left;
+	text-align: right;
+}
+
+.frmLogin .formRow input{
+	float: right;
+	width: 200px;
+}
+
+.frmLogin input[type=submit]{
+	float: right;
+}
+
 .contwrap{
 	z-index: 10;
 	position: relative;
@@ -44,6 +70,7 @@ input{ margin: 0 0 1em 0; }
   line-height: 1;
   margin: 0;
 }
+
 .header p {
   font-size: 24px;
   font-weight: 300;
@@ -68,20 +95,29 @@ input{ margin: 0 0 1em 0; }
 	border-left: 3px solid rgba(130,130,230,0.1);
 }
 
-.regwrap{
+.regWrap{
 	margin: 0 0 0 60%;
 	width: 300px;
 }
-.regwrap label{
-	float: right;
-	padding-right: 1em;
-}
-.regwrap input{
-	float: right;
-	clear: right;
+
+.regWrap .formRow{
+	float: left;
+	width: 100%;
 }
 
-.regwrap h2{
+.regWrap .formRow label{
+	float: left;
+	text-align: right;
+	padding-right: 10px;
+	width: 90px;
+	line-height: 32px;
+}
+
+.regWrap input{
+	float: right;
+}
+
+.regWrap h2{
 	font-size: 1.2em;
 	border-bottom: 1px solid #AAA;
 }

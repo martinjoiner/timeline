@@ -17,7 +17,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php");
 // Query database using server session user id
 $qryEventCode = $db->prepare("	SELECT 	`category`.`id` AS categoryID, 
 										`category`.`name` AS categoryName,
-										`category`.`height` AS categoryHeight,
 										`category`.`hue` AS categoryHue,
 										`event`.`id` as eventID, 
 										`event`.`name` as eventName, 
@@ -70,8 +69,6 @@ if( sizeof($r) ){
 			$thisR['enddate'] = date('Y-n-j');
 		}
 		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
-		
-		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['colhex'] = $thisR['colhex'];
 
 		$tempStart = new DateTime( $thisR['startdate'] );
 		if( is_null($earliestStart) || $tempStart < $earliestStart ){

@@ -33,23 +33,40 @@ if(isLoggedIn()){
 
 			<h2>Login</h2>
 
-			<form name="register" action="login.php" method="post">
-			    <label for="username">Username</label> <input type="text" id="username" name="username" maxlength="30" /><br>
-			    <label for="password">Password</label> <input type="password" name="password" /><br>
+			<form class="frmLogin" action="login.php" method="post">
+			    <div class="formRow">
+			    	<label for="username">Username</label>
+			    	<input type="text" id="username" name="username" maxlength="30" />
+			    </div>
+			    <div class="formRow">
+			    	<label for="password">Password</label>
+			    	<input type="password" name="password" />
+			    </div>
 			    <input type="submit" value="Login" /><br>
 			</form>
 		</div>
 
 	</div>
 
-	<div class="regwrap">
-		<h2>Register</h2>
+	<div class="regWrap">
+		<h2>Create Account</h2>
 
 		<form name="register" action="register.php" method="post">
-		    <input type="text" name="username" maxlength="30" /><label for="username">Username</label>
-		    <input type="password" name="pass1" /><label for="pass1">Password</label>
-		    <input type="password" name="pass2" /><label for="pass2">Password Again</label>
-		    <input type="submit" value="Register" /><br>
+			<div class="formRow">
+				<label for="username">Username</label>
+		    	<input type="text" name="username" id="username" maxlength="30" />
+		    </div>
+			<div class="formRow">
+		    	<label for="pass1">Password</label>
+		    	<input type="password" name="pass1" id="pass1">
+		    </div>
+		    <div class="formRow">
+		    	<label for="pass2">Password Again</label>
+		    	<input type="password" name="pass2" id="pass2">
+		    </div>
+		    <div>
+		    	<input type="submit" value="Register" />
+		    </div>
 		</form>
 	</div>
 

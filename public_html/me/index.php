@@ -31,7 +31,7 @@ if(!isLoggedIn()){
 			<label for="offset">Offset</label><input type="number" id="offset" name="offset" value="0" step="10">
 		</div>
 
-		<button class="btnAddEvent">
+		<button class="btnPrimary btnAddEvent">
 			<i>+</i>
 			<span>Add event</span>
 		</button>
@@ -49,7 +49,6 @@ if(!isLoggedIn()){
 
 			$qryEventCode = $db->prepare("	SELECT `category`.name AS category_name,
 													`category`.id as categoryID, 
-													`category`.height, 
 													`event`.`id`, 
 													`event`.`name`, 
 													`event`.`startdate`, 
@@ -73,14 +72,16 @@ if(!isLoggedIn()){
 						print '</div>';
 					}
 					$currentcat = $thisR["category_name"];
-					print '<div class="categoryRow resizable ui-widget-content cat'.$counter++.'" data-height="'.$thisR["height"].'" id="c' . $thisR['categoryID'] . '">';
-					print '<h2>'.$thisR["category_name"] . '&#133;</h2>';
+					print '<div class="categoryRow" id="c' . $thisR['categoryID'] . '">';
+					print '<h2>' . $thisR["category_name"] . '&#133;</h2>';
 				}
+				/*
 				print '<div class="element" id="e' . $thisR["id"] . '" data-start="' . $thisR["startdate"] . '" data-end="'.$thisR["enddate"].'" >
 						<h3>' . $thisR["name"] . '</h3>
 						<span class="start date">'. $thisR["startdate"] .'</span> 
 						<span class="end date">'. $thisR["enddate"] . '</span>
 					</div>';
+				*/
 			}
 			print '</div>';
 			?>
@@ -94,16 +95,20 @@ if(!isLoggedIn()){
 			<i>X</i>
 			<h2>Add event</h2>
 			<div class="formRow">
+				<label for="category_id">Category</label>
+				<select id="category_id"></select>
+			</div>
+			<div class="formRow" id="newCatRow">
+				<label for="newCategory">New category</label>
+				<input type="text" id="newCategory">
+			</div>
+			<div class="formRow">
 				<label for="name">Name</label>
 				<input type="text" id="name">
 			</div>
 			<div class="formRow">
-				<label for="category_id">Category</label>
-				<select id="category_id"></select><br>
-			</div>
-			<div class="formRow">
-				<label>Start</label>
-				<input type="date" name="startdate">
+				<label for="startdate">Start</label>
+				<input type="date" id="startdate" name="startdate">
 			</div>
 			<div class="formRow">
 				<label for="enddate">End</label>
@@ -111,8 +116,13 @@ if(!isLoggedIn()){
 			</div>
 			<div class="formRow">
 				<label>&nbsp;</label>
+				<input type="checkbox" id="noEnd">
+				<label for="noEnd">Not ended yet</label>
+			</div>
+			<div class="formRow">
+				<label>&nbsp;</label>
 				<input type="button" value="Cancel" id="btnCancelAddEvent">
-				<input type="button" value="Add" id="btnSubmitAddEvent">
+				<input type="button" value="Add" id="btnSubmitAddEvent" class="btnPrimary">
 			</div>
 		</div>
 	</div>

@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `height` int(11) NOT NULL DEFAULT '90',
   `priority` int(11) NOT NULL DEFAULT '1',
   `hue` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
