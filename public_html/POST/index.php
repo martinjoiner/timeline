@@ -30,31 +30,54 @@ if( $_POST['category_id'] == '' ){
 }
 
 
-$strSQL = 'INSERT INTO	`event` ( 	`user_id`, 
-									`category_id`, 
-									`name`, 
-									`startdate` ';
 
-if( !$_POST['noEnd'] ){
-	$strSQL .= ' , `enddate` ';
+if( $_POST['eventID'] ){
+
+	$strSQL = ' UPDATE `event` 
+				SET `category_id` = :categoryID,
+					`name` = :eventName,
+					`startdate` = :startDate, ';
+
+	if( !$_POST['noEnd'] ){
+		$strSQL .= ' `enddate` = :endDate ';
+	} else {
+		$strSQL .= ' `enddate` = NULL ';
+	}
+
+	$strSQL .= ' WHERE `id` = :eventID 
+				AND `user_id` = :userID ';
+
+} else {
+
+	$strSQL = 'INSERT INTO	`event` ( 	`user_id`, 
+										`category_id`, 
+										`name`, 
+										`startdate` ';
+
+	if( !$_POST['noEnd'] ){
+		$strSQL .= ' , `enddate` ';
+	}
+
+	$strSQL .= ' )
+				VALUES ( 	:userID,
+							:categoryID, 
+							:eventName,
+							:startDate ';
+
+	if( !$_POST['noEnd'] ){
+		$strSQL .= ' , :endDate ';
+	}
+
+	$strSQL .= ' ) ';
+
 }
-
-$strSQL .= ' )
-			VALUES ( 	:userID,
-						:categoryID, 
-						:eventName,
-						:startDate ';
-
-if( !$_POST['noEnd'] ){
-	$strSQL .= ' , :endDate ';
-}
-
-$strSQL .= ' ) ';
-									
 
 // Query database using server session user id
 $qryInsEvent = $db->prepare( $strSQL ); 
 
+if( $_POST['eventID'] ){
+	$qryInsEvent->bindValue('eventID', $_POST['eventID'], PDO::PARAM_INT);
+}
 $qryInsEvent->bindValue('userID', $_SESSION['user_id'], PDO::PARAM_INT);
 $qryInsEvent->bindValue('categoryID', $_POST['category_id'], PDO::PARAM_INT);
 $qryInsEvent->bindValue('eventName', $_POST['name'], PDO::PARAM_STR);
@@ -63,18 +86,23 @@ if( !$_POST['noEnd'] ){
 	$qryInsEvent->bindValue('endDate', $_POST['enddate'], PDO::PARAM_STR);
 }
 $qryInsEvent->execute();
-$newID = $db->lastInsertId();
+
+if( $_POST['eventID'] ){
+	$returnID = $_POST['eventID'];
+} else {
+	$returnID = $db->lastInsertId();
+}
 $qryInsEvent->closeCursor();
 
 
 
 
 $skvReturn['success'] = false;
-if( $newID ){
+if( $returnID ){
 	$skvReturn['success'] = true;
 	$skvReturn['skvCategory']['id'] = intVal($_POST['category_id']);
 	$skvReturn['skvCategory']['name'] = $_POST['newCategory'];
-	$skvReturn['skvCategory']['arrEvents'][0]['id'] = intVal($newID);
+	$skvReturn['skvCategory']['arrEvents'][0]['id'] = intVal($returnID);
 	$skvReturn['skvCategory']['arrEvents'][0]['name'] = $_POST['name'];
 	$skvReturn['skvCategory']['arrEvents'][0]['startDate'] = $_POST['startdate'];
 	if( $_POST['enddate'] ){

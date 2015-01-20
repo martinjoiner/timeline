@@ -6,7 +6,7 @@ config.pixelsPerDay = 10;
 config.zoom = 1; 
 config.strLifeStart = '';
 config.offset = 0;
-
+config.currentlyEditing = 0;
 
 
 // Takes a string in the format YYYY-MM-DD and returns a Date object
@@ -28,17 +28,71 @@ function dayDiffStr( strDate1, strDate2 ){
 }
 
 
-$('.eventInput i, #btnCancelAddEvent').click( hideAddEvent );
+$('.eventInput i, #btnCancelAddEvent').click( hideEventForm );
 
-function hideAddEvent(){ 
+
+function hideEventForm(){ 
     $('.eventInputwrap').addClass('EIWcollapsed');
     $('.lifeBoard').removeClass('blurred');	 
 }
 
-$('.btnAddEvent').click( function(){ 
+
+// Brings up the event input form and blurs and darkens the background by adding classes
+// @mode can be 'add' or 'edit'
+function showEventForm( mode, elemIDSelector ){
+
+    var nameVal = '';
+    var startDateVal = '';
+    var endDateVal = '';
+    var categoryIDVal = '';
+
+    if( mode === 'add' ){
+        $('.eventInputwrap h2').html('Add event');
+        $('.eventInputwrap #btnSubmitEvent').val('Add');
+        config.currentlyEditing = null;
+    } else {
+        $('.eventInputwrap h2').html('Edit event');
+        $('.eventInputwrap #btnSubmitEvent').val('Save');
+        config.currentlyEditing = parseInt( elemIDSelector.substring(1) );
+
+        // Get values from the source element
+        var elemSource = $('#' + elemIDSelector);
+        categoryIDVal = elemSource.parent('.categoryRow').attr('id').substring(1);
+        nameVal = elemSource.find('h3').html();
+        startDateVal = elemSource.data('start');
+        endDateVal = elemSource.data('end');
+
+    }  
+
+    $('.eventInput select#category_id').val( categoryIDVal ).change(); 
+    $('.eventInput input#name').val( nameVal ).focus(); 
+    $('.eventInput input#startdate').val( startDateVal );
+
+    if( endDateVal === null ){
+        $('#noEnd').attr('checked','checked');
+        $('#enddate').val('').attr('disabled','disabled');
+    } else {
+        $('#noEnd').removeAttr('checked');
+        $('#enddate').val( endDateVal ).removeAttr('disabled');
+    }  
+
     $('.eventInputwrap').removeClass('EIWcollapsed');
-    $('.lifeBoard').addClass('blurred');    
-    $('.eventInput input#name').focus(); 
+    $('.lifeBoard').addClass('blurred');
+}
+
+
+// When the "Not ended yet" checkbox changes enable/disable the end date input
+$('#noEnd').change( function(){
+    if( $(this).attr('checked') ){
+        $('#enddate').attr('disabled','disabled');
+    } else {
+        $('#enddate').removeAttr('disabled');
+    }
+})
+
+
+$('.btnSubmitEvent').click( function(){ 
+    showEventForm( 'add' );
 });
 
 
@@ -51,24 +105,17 @@ $('select#category_id').change( function(){
 });
 
 
-$( ".resizable" ).resizable({
-    start:function () {
-      
-    },
-    stop:function () {
-     
-    },
-    resize:function () {
-	  $(this).children('.element').css('height',parseInt($(this).css('height').substring(0,$(this).css('height').length-2))-24);
-	  
-    }
+$('.lifeBoard').on('click','.element', function(){
+
+    showEventForm( 'edit', $(this).attr('id') );
 });
+
 
 $('#zoom, #offset').change( rescale );
 
 
 // Performs AJAX call to server
-$('#btnSubmitAddEvent').click( function(){
+$('#btnSubmitEvent').click( function(){
 
     var category_id = $('select#category_id').val();
     var newCategory = $('input#newCategory').val();
@@ -83,7 +130,8 @@ $('#btnSubmitAddEvent').click( function(){
     $.ajax({
         type: "POST",
         url: "/POST/",
-        data: { 'category_id': category_id,
+        data: { 'eventID': config.currentlyEditing,
+                'category_id': category_id,
                 'newCategory': newCategory,
                 'name': name,
                 'startdate': startdate,
@@ -95,7 +143,7 @@ $('#btnSubmitAddEvent').click( function(){
 
         processCategory( data.skvCategory );
         rescale();
-        hideAddEvent();
+        hideEventForm();
         
     });
 
@@ -181,19 +229,17 @@ function processCategory( skvCategory ){
         elemEvent = $('#e' + skvCategory.arrEvents[i]['id']);
         if( elemEvent.length ){
             // Cool! The event element exists
-            
+            elemEvent.find('h3').html( skvCategory.arrEvents[i]['name'] );
         } else {
             // We need to create the event element
             strHTML =  '<div class="element" id="e' + skvCategory.arrEvents[i]['id'] + '" ';
             strHTML += ' data-start="' + skvCategory.arrEvents[i]['startDate'] + '" ';
-            strHTML += ' data-end="' + skvCategory.arrEvents[i]['endDate'] + '">';
+            strHTML += ' data-end="' + skvCategory.arrEvents[i]['endDate'] + '" >';
             strHTML += '<h3>';
             if( skvCategory.arrEvents[i]['name'] ){
                 strHTML += skvCategory.arrEvents[i]['name'];
             }
             strHTML += '</h3>';
-            strHTML += '<span class="start date">' + skvCategory.arrEvents[i]['startDate'] + '</span>';
-            strHTML += '<span class="end date">' + skvCategory.arrEvents[i]['endDate'] + '</span>';
             strHTML += '</div>';
             elemCategory.append( strHTML );
 
@@ -225,15 +271,18 @@ function rescale(){
 
     $(".resizable h2").css( { 'margin-left': offsetPixels + 'px' } );
 
+    // Loop through all the elements with class .element setting CSS width and left attributes
 	$(".element").each( function() {
-        var durationDays = Math.round( dayDiffStr( $(this).data('start'), $(this).data('end') ) );
+        var thisEndDate = $(this).data('end');
+        if( thisEndDate === null ){
+            thisEndDate = config.strLifeEnd;
+        }
+        var durationDays = Math.round( dayDiffStr( $(this).data('start'), thisEndDate ) );
         var widthPixels = Math.round( durationDays * config.pixelsPerDay );
 		$(this).css('width', widthPixels + 'px' );
         var daysSinceLifeStart = dayDiffStr( config.strLifeStart, $(this).data('start') );
         var leftPixels = daysSinceLifeStart * config.pixelsPerDay;
 		$(this).css({left: leftPixels + 'px'});
-
-        //console.log( $(this).find('h3').html() + ' lasts ' + durationDays + ' days. Width: ' + widthPixels + ' pixels' );
 	});
 
     // Iterate through all the newYear markers positioning them appropriately

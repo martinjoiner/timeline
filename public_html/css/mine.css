@@ -32,15 +32,6 @@
 	text-align: right;
 }
 
-.date{
-	font-size: 0.9em;
-	background-color: #FFF;
-	background-color: rgba(255,255,255,0.5);
-	border-radius: .3em;
-	padding: .3em;
-	margin-right: 5px;
-}
-
 .pageControls{
 	float: left;
 	width: 100%;
@@ -117,9 +108,7 @@
 .categoryRow .element{
 	background-color: #BFF; 
 	height: 45px;
-}
 
-.categoryRow .element{ 
 	padding: 0.3em;
 	position: absolute; 
 	margin-top: 8px;
@@ -128,14 +117,20 @@
 	   -moz-box-sizing: border-box;
 			box-sizing: border-box;
 	overflow: hidden;
+	cursor: pointer;
+}
+
+.categoryRow .element:hover{
+	box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3);
 }
 
 .categoryRow .element h3{
 	margin: 0 5px 5px 0;
 	font-size: 1.1em;
 	text-shadow: 0 -1px 0 rgba(255,255,255,0.2);
+	white-space: nowrap;
+	cursor: pointer;
 }
-
 
 
 
@@ -144,11 +139,11 @@
 
 /* Add event Button */
 
-.btnAddEvent{
+.btnSubmitEvent{
 	z-index: 1050;
 }
 
-.btnAddEvent i{
+.btnSubmitEvent i{
 	display: inline-block;
 	margin: 0 8px 0 0;
 	box-shadow: inset 0 2px 3px rgba(0,0,0,.4), inset 0 -1px 2px rgba(255,255,255,.8);
@@ -159,7 +154,7 @@
 	color: #CCC;
 }
 
-.btnAddEvent:hover{
+.btnSubmitEvent:hover{
 	background: #095e9b;
 	color: #FFF;
 }

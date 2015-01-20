@@ -31,7 +31,7 @@ if(!isLoggedIn()){
 			<label for="offset">Offset</label><input type="number" id="offset" name="offset" value="0" step="10">
 		</div>
 
-		<button class="btnPrimary btnAddEvent">
+		<button class="btnPrimary btnSubmitEvent">
 			<i>+</i>
 			<span>Add event</span>
 		</button>
@@ -75,13 +75,7 @@ if(!isLoggedIn()){
 					print '<div class="categoryRow" id="c' . $thisR['categoryID'] . '">';
 					print '<h2>' . $thisR["category_name"] . '&#133;</h2>';
 				}
-				/*
-				print '<div class="element" id="e' . $thisR["id"] . '" data-start="' . $thisR["startdate"] . '" data-end="'.$thisR["enddate"].'" >
-						<h3>' . $thisR["name"] . '</h3>
-						<span class="start date">'. $thisR["startdate"] .'</span> 
-						<span class="end date">'. $thisR["enddate"] . '</span>
-					</div>';
-				*/
+
 			}
 			print '</div>';
 			?>
@@ -122,7 +116,7 @@ if(!isLoggedIn()){
 			<div class="formRow">
 				<label>&nbsp;</label>
 				<input type="button" value="Cancel" id="btnCancelAddEvent">
-				<input type="button" value="Add" id="btnSubmitAddEvent" class="btnPrimary">
+				<input type="button" value="Add" id="btnSubmitEvent" class="btnPrimary">
 			</div>
 		</div>
 	</div>

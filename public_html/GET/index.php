@@ -62,12 +62,12 @@ if( sizeof($r) ){
 		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['id'] = $thisR['eventID'];
 		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['name'] = $thisR['eventName'];
 		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['startDate'] = $thisR['startdate'];
+		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
 
 		// A null end date means the period is current
 		if( is_null($thisR['enddate']) ){
-			$thisR['enddate'] = date('Y-n-j');
+			$latestEnd = date('Y-n-j');
 		}
-		$skvReturn['arrCategories'][ $cntCats ]['arrEvents'][$cntEventsInCat]['endDate'] = $thisR['enddate'];
 
 		$tempStart = new DateTime( $thisR['startdate'] );
 		if( is_null($earliestStart) || $tempStart < $earliestStart ){
