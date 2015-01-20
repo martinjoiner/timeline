@@ -108,7 +108,7 @@ if( $returnID ){
 	if( $_POST['enddate'] ){
 		$skvReturn['skvCategory']['arrEvents'][0]['endDate'] = $_POST['enddate'];
 	} else {
-		$skvReturn['skvCategory']['arrEvents'][0]['endDate'] = date('Y-n-j');
+		$skvReturn['skvCategory']['arrEvents'][0]['endDate'] = null;
 	}
 }
 

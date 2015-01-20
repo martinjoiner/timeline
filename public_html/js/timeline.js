@@ -8,6 +8,10 @@ config.strLifeStart = '';
 config.offset = 0;
 config.currentlyEditing = 0;
 
+// This stores the endDate when a user disables the input box by ticking the not ended yet checkbox, 
+// if they re-enable it the box will magically know the previous value!
+config.tempEnd = ''; 
+
 
 // Takes a string in the format YYYY-MM-DD and returns a Date object
 function parseDate(str) {
@@ -84,9 +88,10 @@ function showEventForm( mode, elemIDSelector ){
 // When the "Not ended yet" checkbox changes enable/disable the end date input
 $('#noEnd').change( function(){
     if( $(this).attr('checked') ){
-        $('#enddate').attr('disabled','disabled');
+        config.tempEnd = $('#enddate').val();
+        $('#enddate').attr('disabled','disabled').val('');
     } else {
-        $('#enddate').removeAttr('disabled');
+        $('#enddate').removeAttr('disabled').val(config.tempEnd);
     }
 })
 
@@ -229,7 +234,7 @@ function processCategory( skvCategory ){
         elemEvent = $('#e' + skvCategory.arrEvents[i]['id']);
         if( elemEvent.length ){
             // Cool! The event element exists
-            elemEvent.find('h3').html( skvCategory.arrEvents[i]['name'] );
+            elemEvent.data('start',skvCategory.arrEvents[i]['startDate']).data('end',skvCategory.arrEvents[i]['endDate']).find('h3').html( skvCategory.arrEvents[i]['name'] );
         } else {
             // We need to create the event element
             strHTML =  '<div class="element" id="e' + skvCategory.arrEvents[i]['id'] + '" ';
