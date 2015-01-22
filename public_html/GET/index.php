@@ -1,16 +1,8 @@
 <?php
 
-session_start();
+include($_SERVER['DOCUMENT_ROOT'] . "/checkUserSession.inc.php");
 
 header('Content-Type: application/json');
-
-if( !$_SESSION['user_id'] ){
-	$skvReturn['success'] = false;
-	$skvReturn['error'] = 'No user logged in';
-	// Print structure in JSON format
-	echo json_encode($skvReturn);
-	exit;
-}
 
 include($_SERVER['DOCUMENT_ROOT'] . "/db_connect.inc.php"); 
 
