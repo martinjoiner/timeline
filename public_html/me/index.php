@@ -118,6 +118,8 @@ if(!isLoggedIn()){
 				<input type="button" value="Cancel" id="btnCancelAddEvent">
 				<input type="button" value="Add" id="btnSubmitEvent" class="btnPrimary">
 			</div>
+			<p id="btnDeleteEvent" style="display: none;">Delete this event</p>
+			<input type="button" value="Confirm Delete" id="btnConfirmDelete" class="btnPrimary" style="display: none;">
 		</div>
 	</div>
 

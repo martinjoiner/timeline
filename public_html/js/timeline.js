@@ -36,6 +36,7 @@ $('.eventInput i, #btnCancelAddEvent').click( hideEventForm );
 
 
 function hideEventForm(){ 
+    $('#btnDeleteEvent, #btnConfirmDelete').hide();
     $('.eventInputwrap').addClass('EIWcollapsed');
     $('.lifeBoard').removeClass('blurred');	 
 }
@@ -53,10 +54,12 @@ function showEventForm( mode, elemIDSelector ){
     if( mode === 'add' ){
         $('.eventInputwrap h2').html('Add event');
         $('.eventInputwrap #btnSubmitEvent').val('Add');
+        $('#btnDeleteEvent, #btnConfirmDelete').hide();
         config.currentlyEditing = null;
     } else {
         $('.eventInputwrap h2').html('Edit event');
         $('.eventInputwrap #btnSubmitEvent').val('Save');
+        $('#btnDeleteEvent').show();
         config.currentlyEditing = parseInt( elemIDSelector.substring(1) );
 
         // Get values from the source element
@@ -101,6 +104,35 @@ $('.btnSubmitEvent').click( function(){
 });
 
 
+// When the "Delete this event" link is clicked, show the confirm delete button
+$('#btnDeleteEvent').click( function(){
+    $('#btnConfirmDelete').show();
+});
+
+
+// When the confirm delete button is clicked, POST a request to delete it
+$('#btnConfirmDelete').click( function(){
+    
+    $.ajax({
+        type: "POST",
+        url: "/POST/deleteevent/",
+        data: { 'eventID': config.currentlyEditing },
+        dataType: "json"
+    }).done(function(data) {
+
+        // If a successful deletion has occured, remove the element from the DOM
+        if( data.success ){
+            $('.lifeBoard #e' + data.eventID).remove();
+        }
+        hideEventForm();
+        
+    });
+
+});
+
+
+// When the category select box value changes, check if it's 
+// value is blank meaning the user wants to enter a new category
 $('select#category_id').change( function(){
     if( $(this).val() == '' ){
         $('#newCatRow').removeClass('hidden');
@@ -110,8 +142,8 @@ $('select#category_id').change( function(){
 });
 
 
+// When an life event is clicked, bring up the edit dialogue
 $('.lifeBoard').on('click','.element', function(){
-
     showEventForm( 'edit', $(this).attr('id') );
 });
 

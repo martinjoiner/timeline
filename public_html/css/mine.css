@@ -160,6 +160,24 @@
 }
 
 
+#btnDeleteEvent{
+	color: #811;
+	text-decoration: underline;
+	cursor: pointer;
+	padding: 1em 0;
+}
+#btnDeleteEvent:hover{
+	color: #A11;
+}
+
+#btnConfirmDelete{
+	background-color: #800;
+}
+#btnConfirmDelete:hover{
+	background-color: #A00;
+}
+
+
 
 
 .eventInput i{
