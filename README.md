@@ -12,23 +12,4 @@ It is important to be able to vividly recall periods of your life when you were 
 
 ## Technology
 
-HTML5, Javascript, JQuery
-
-## To-do
-
-### New features
-
-* Graphical interface for controlling horizontal scroll and zoom
-* Email alert when someone creates an account
-* Privacy and Security information
-
-### Bug fixes
-
-* Update new year makers when life span moves further into past or future
-* Stop accidental creation of duplicate categories
-* Move element to different category line when event edited
-
-### Improvements
-
-* Validate date inputs when saving an event
-* Better feedback and flow on account creation process
+HTML5, CSS, Javascript, JQuery
